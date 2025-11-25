@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+    <title>{{ $quiz['title'] }}</title>
+</head>
 <body style="background:#111; color:#fff; font-family:Arial; padding:30px;">
-    <h1>{{ $quiz['title'] }}</h1>
+
+<h1>{{ $quiz['title'] }}</h1>
+
+<form action="/quiz/{{ $id }}/submit" method="POST">
+    @csrf
 
     @foreach($quiz['questions'] as $index => $question)
         <div style="margin-bottom:25px;">
@@ -17,7 +23,13 @@
         </div>
     @endforeach
 
-    <br>
-    <a href="/quizzes" style="color:orange;">← Powrót do listy quizów</a>
+    <button type="submit" style="padding:10px 20px; background:orange; border:none; font-size:18px; cursor:pointer;">
+        Zatwierdź
+    </button>
+</form>
+
+<br>
+<a href="/" style="color:orange;">◀ Powrót</a>
+
 </body>
 </html>

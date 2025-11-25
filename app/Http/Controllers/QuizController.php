@@ -125,4 +125,46 @@ class QuizController extends Controller
             'id' => $id
         ]);
     }
+    public function submit(Request $request, $id)
+{
+    if (!isset($this->quizzes[$id])) {
+        abort(404);
+    }
+
+    $quiz = $this->quizzes[$id];
+    $correct = 0;
+
+    foreach ($quiz['questions'] as $index => $question) {
+        $userAnswer = $request->input("q$index");
+
+        if ($userAnswer !== null && (int)$userAnswer === $question['correct']) {
+            $correct++;
+        }
+    }
+
+    return redirect("/quiz/$id/result")
+           ->with('score', $correct)
+           ->with('total', count($quiz['questions']));
+}
+
+public function result($id)
+{
+    if (!isset($this->quizzes[$id])) {
+        abort(404);
+    }
+
+    $score = session('score');
+    $total = session('total');
+
+    if ($score === null || $total === null) {
+        return redirect("/quiz/$id");
+    }
+
+    return view('quizzes.result', [
+        'quiz' => $this->quizzes[$id],
+        'score' => $score,
+        'total' => $total,
+    ]);
+}
+
 }

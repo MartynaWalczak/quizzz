@@ -9,3 +9,5 @@ Route::get('/', function () {
 
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes');
 Route::get('/quiz/{id}', [QuizController::class, 'show']);
+Route::post('/quiz/{id}/submit', [QuizController::class, 'submit']);
+Route::get('/quiz/{id}/result', [QuizController::class, 'result']);
