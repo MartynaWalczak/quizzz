@@ -64,14 +64,14 @@
     <h1>Wybierz quiz</h1>
 
     <div class="quiz-container">
-        @foreach ($quizzes as $id => $quiz)
-            <a href="/quiz/{{ $id }}" style="text-decoration: none;">
-                <div class="quiz-box">
-                    <img src="/images/{{ ($quiz['title']) }}.jpg" alt="{{ $quiz['title'] }}">
-                    <div class="quiz-title">{{ $quiz['title'] }}</div>
-                </div>
-            </a>
-        @endforeach
+        @foreach ($quizzes as $quiz)
+    <a href="/quiz/{{ $quiz->id }}" style="text-decoration: none;">
+        <div class="quiz-box">
+            <img src="/images/{{ strtolower($quiz->title) }}.jpg" alt="{{ $quiz->title }}">
+            <div class="quiz-title">{{ $quiz->title }}</div>
+        </div>
+    </a>
+@endforeach
     </div>
 
 </body>
