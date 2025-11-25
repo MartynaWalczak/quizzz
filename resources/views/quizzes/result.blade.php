@@ -12,11 +12,11 @@
 </h2>
 
 <p style="font-size:20px;">
-    Gratulacje! Sprawdź swoje odpowiedzi lub spróbuj ponownie.
+    Gratulacje!
 </p>
 
 <br>
-<a href="/" style="color:orange; font-size:22px;">◀ Wróć do strony głównej</a>
+<a href="/" style="color:orange; font-size:22px;"> Wróć</a>
 
 </body>
 </html>

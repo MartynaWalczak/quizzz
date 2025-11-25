@@ -28,7 +28,7 @@
 
 
 <br>
-<a href="/" style="color:orange;">◀ Powrót</a>
+<a href="/quizzes" style="color:orange;"> Powrót</a>
 
 </body>
 </html>

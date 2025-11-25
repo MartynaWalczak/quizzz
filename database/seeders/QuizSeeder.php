@@ -12,7 +12,7 @@ class QuizSeeder extends Seeder
 {
     public function run()
     {
-        // TWOJA TABLICA QUIZÓW Z KONTROLERA
+        
         $quizzes = [
             1 => [
             'title' => 'Matematyka',
@@ -60,7 +60,6 @@ class QuizSeeder extends Seeder
             ]
         ],
 
-        // 4. GEOGRAFIA
         4 => [
             'title' => 'Geografia',
             'questions' => [
@@ -77,7 +76,6 @@ class QuizSeeder extends Seeder
             ]
         ],
 
-        // 5. FIZYKA
         5 => [
             'title' => 'Fizyka',
             'questions' => [
@@ -95,8 +93,8 @@ class QuizSeeder extends Seeder
         ],
 
             6 => [
-        'title' => 'Historia',
-        'questions' => [
+            'title' => 'Historia',
+            'questions' => [
             ['question' => 'W którym roku rozpoczęła się II wojna światowa?', 'answers' => ['1914', '1939', '1945'], 'correct' => 1],
             ['question' => 'W którym roku upadło Cesarstwo Zachodniorzymskie?', 'answers' => ['476', '966', '1410'], 'correct' => 0],
             ['question' => 'Chrzest Polski miał miejsce w roku:', 'answers' => ['966', '1025', '1410'], 'correct' => 0],
@@ -110,7 +108,7 @@ class QuizSeeder extends Seeder
         ],
     ],
         ];
-
+        // Tworzenie quizów, pytań i odpowiedzi (INSERT INTO quizzes (title) VALUES ('Matematyka');)
         foreach ($quizzes as $quizData) {
             $quiz = Quiz::create([
                 'title' => $quizData['title']

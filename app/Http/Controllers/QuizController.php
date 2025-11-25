@@ -9,7 +9,7 @@ class QuizController extends Controller
 {
     public function index()
     {
-        // pobiera wszystkie quizy z tabeli `quizzes`
+        // SELECT * FROM quizzes;
         $quizzes = Quiz::all();
 
         return view('quizzes.index', [
@@ -27,12 +27,12 @@ class QuizController extends Controller
         ]);
     }
 
-    // jeśli masz sprawdzanie wyniku:
+    // sprawdzanie wyniku:
     public function submit(Request $request, $id)
     {
         $quiz = Quiz::with('questions')->findOrFail($id);
 
-        $score = 0;
+        $score = 0; //licznik poprawnych odpowiedzi
 
         foreach ($quiz->questions as $index => $question) {
             $userAnswer = $request->input("q$index");
