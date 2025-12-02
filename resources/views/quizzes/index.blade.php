@@ -71,7 +71,7 @@
             <div class="quiz-title">{{ $quiz->title }}</div>
         </div>
     </a>
-@endforeach
+        @endforeach
     </div>
 
 </body>

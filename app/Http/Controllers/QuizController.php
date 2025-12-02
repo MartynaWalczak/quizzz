@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use App\Models\Question;
+use App\Models\Answer;
+
 
 class QuizController extends Controller
 {
@@ -54,10 +57,41 @@ class QuizController extends Controller
         $score = session('score');
         $total = session('total');
 
-        if ($score === null || $total === null) {
-            return redirect("/quiz/$id");
-        }
-
         return view('quizzes.result', compact('quiz', 'score', 'total'));
     }
+
+    public function addQuestionForm($id)
+{
+    $quiz = Quiz::findOrFail($id);
+    return view('quizzes.add-question', compact('quiz'));
+}
+
+public function storeQuestion(Request $request, $id)
+{
+    // Walidacja
+    $request->validate([
+        'question' => 'required|min:3',
+        'answers.*' => 'required',
+        'correct_answer' => 'required|integer|min:0|max:3'
+    ]);
+
+    // Dodanie pytania do bazy
+    $question = Question::create([
+        'quiz_id' => $id,
+        'question' => $request->question,
+        'correct_answer' => $request->correct_answer,
+    ]);
+
+    // Zapis odpowiedzi
+    foreach ($request->answers as $index => $answerText) {
+        Answer::create([
+            'question_id' => $question->id,
+            'answer' => $answerText,
+            'index' => $index
+        ]);
+    }
+
+    return redirect("/quiz/$id")->with('success', 'Pytanie zostało dodane!');
+}
+
 }

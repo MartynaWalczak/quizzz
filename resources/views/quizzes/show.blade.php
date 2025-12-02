@@ -29,6 +29,7 @@
 
 <br>
 <a href="/quizzes" style="color:orange;"> Powrót</a>
+<a href="/quiz/{{ $quiz->id }}/add-question"> Dodaj nowe pytanie</a>
 
 </body>
 </html>
