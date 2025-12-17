@@ -91,7 +91,7 @@ public function storeQuestion(Request $request, $id)
         ]);
     }
 
-    return redirect("/quiz/$id")->with('success', 'Pytanie zostało dodane!');
+    return redirect("/quiz/$id");
 }
 
 }
