@@ -12,7 +12,7 @@ class QuizController extends Controller
 {
     public function index()
     {
-        // SELECT * FROM quizzes;
+       
         $quizzes = Quiz::all();
 
         return view('quizzes.index', [
@@ -30,12 +30,11 @@ class QuizController extends Controller
         ]);
     }
 
-    // sprawdzanie wyniku:
     public function submit(Request $request, $id)
     {
         $quiz = Quiz::with('questions')->findOrFail($id);
 
-        $score = 0; //licznik poprawnych odpowiedzi
+        $score = 0; 
 
         foreach ($quiz->questions as $index => $question) {
             $userAnswer = $request->input("q$index");
@@ -68,21 +67,20 @@ class QuizController extends Controller
 
 public function storeQuestion(Request $request, $id)
 {
-    // Walidacja
     $request->validate([
         'question' => 'required|min:3',
         'answers.*' => 'required',
         'correct_answer' => 'required|integer|min:0|max:3'
     ]);
 
-    // Dodanie pytania do bazy
+    // Dodanie pytania do bazy + dodanie odpowiedzi
     $question = Question::create([
         'quiz_id' => $id,
         'question' => $request->question,
         'correct_answer' => $request->correct_answer,
     ]);
 
-    // Zapis odpowiedzi
+   
     foreach ($request->answers as $index => $answerText) {
         Answer::create([
             'question_id' => $question->id,
